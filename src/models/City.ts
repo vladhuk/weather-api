@@ -1,6 +1,5 @@
-import { Model, Optional, DataTypes } from 'sequelize/types';
+import { Model, Optional, DataTypes } from 'sequelize';
 import { sequelize } from '../config';
-import Weather from './Weather';
 
 interface CityAttributes {
   id: number;
@@ -27,6 +26,7 @@ City.init(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
     },
     name: DataTypes.STRING,
     country: DataTypes.STRING,
@@ -38,7 +38,5 @@ City.init(
     modelName: 'city',
   }
 );
-
-City.hasMany(Weather);
 
 export default City;
