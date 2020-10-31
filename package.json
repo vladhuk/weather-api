@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": ">=14.4.0"
+  },
   "scripts": {
     "start-server": "ts-node src/scripts/server.ts",
     "start-weather-fetcher": "ts-node src/scripts/weather-fetcher.ts --country=US --cities=2",
@@ -14,6 +17,7 @@
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5",
+    "sleep-promise": "^9.0.0",
     "yargs": "^16.1.0",
     "zlib": "^1.0.5"
   },
