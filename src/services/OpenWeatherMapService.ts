@@ -77,17 +77,22 @@ async function retrieveHistoryWeatherForCity(
   const prevDays = [...Array(5).keys()].map((day) => -day - 1);
 
   const weathersPerDayResponsePromises = prevDays.map((day) =>
-    axios.get<HistoryWeatherDto>(
-      'http://api.openweathermap.org/data/2.5/onecall/timemachine',
-      {
-        params: {
-          appid: process.env.weather_api_key,
-          dt: getApiDate(day),
-          lat: city.lat,
-          lon: city.lon,
-        },
-      }
-    )
+    axios
+      .get<HistoryWeatherDto>(
+        'http://api.openweathermap.org/data/2.5/onecall/timemachine',
+        {
+          params: {
+            appid: process.env.weather_api_key,
+            dt: getApiDate(day),
+            lat: city.lat,
+            lon: city.lon,
+          },
+        }
+      )
+      .catch((error) => {
+        console.log(error.message);
+        return error;
+      })
   );
 
   const weathersPerDayResponses = await Promise.all(
@@ -101,8 +106,8 @@ async function retrieveHistoryWeatherForCity(
  *
  * @param day Days number from now
  */
-function getApiDate(day: number): string {
-  return (new Date().setUTCHours(24 * day, 0, 0, 0) / 1000).toFixed(0);
+function getApiDate(day: number): number {
+  return Math.floor(new Date().setUTCHours(24 * day, 0, 0, 0) / 1000);
 }
 
 async function retrieveForecastWeatherForCity(

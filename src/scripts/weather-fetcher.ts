@@ -7,7 +7,6 @@ import {
   saveHistoryCities,
 } from '../services/OpenWeatherMapService';
 import WeatherFeatcherParams from '../types/utility/WeatherFeatcherParams';
-import sleep from 'sleep-promise';
 import Weather, { WeatherCreationAttributes } from '../models/Weather';
 import { deleteAllCitiesWithWeather } from '../services/CityService';
 
@@ -23,17 +22,8 @@ const argv = <WeatherFeatcherParams>yargs(process.argv).argv;
 
   const cities = await saveHistoryCities(filteredHistoryCities);
 
-  console.log(
-    `Fetching weather... Wait ${Math.floor(cities.length / 10)} minutes.`
-  );
-
   const weathersForCities: WeatherCreationAttributes[][] = await Promise.all(
-    cities.map(async (city, i) => {
-      // Free API allows only 60 requests per minute. For one city it makes 6 requests
-      if ((i + 1) % 10 === 0) {
-        await sleep(60 * 1000);
-      }
-
+    cities.map(async (city) => {
       const weathers = await retrieveWeatherForCity(city);
 
       return weathers.map((weather) => ({
