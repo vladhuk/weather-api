@@ -4,7 +4,7 @@ import Weather from './Weather';
 
 interface CityAttributes {
   id: number;
-  name: number;
+  name: string;
   country: string;
   lon: number;
   lat: number;
@@ -16,7 +16,7 @@ class City
   extends Model<CityAttributes, CityCreationAttributes>
   implements CityAttributes {
   id!: number;
-  name!: number;
+  name!: string;
   country!: string;
   lon!: number;
   lat!: number;
