@@ -15,12 +15,18 @@ const params: WeatherFeatcherParams = {
 };
 
 (async () => {
+  console.log('Fetching cities...');
+
   const historyCities = await retrieveHistoryCities();
   const filteredHistoryCities = filterHistoryCities(historyCities, params);
 
   await deleteAllCitiesWithWeather();
 
+  console.log('Saving cities...');
+
   const cities = await saveHistoryCities(filteredHistoryCities);
+
+  console.log('Fetching weather...');
 
   const weathersForCities: WeatherCreationAttributes[][] = await Promise.all(
     cities.map(async (city) => {
@@ -45,5 +51,9 @@ const params: WeatherFeatcherParams = {
   const flattenedWeathers: WeatherCreationAttributes[] = [];
   weathersForCities.forEach((weathers) => flattenedWeathers.push(...weathers));
 
+  console.log('Saving cities...');
+
   await Weather.bulkCreate(flattenedWeathers);
+
+  console.log('Finishing...');
 })();
