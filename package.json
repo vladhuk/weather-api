@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start-server": "ts-node src/scripts/server.ts",
-    "start-weather-fetcher": "ts-node src/scripts/weather-fetcher.ts --country=US --cities=2",
+    "start-weather-fetcher": "ts-node src/scripts/weather-fetcher.ts",
     "lint": "eslint src/"
   },
   "dependencies": {
@@ -18,14 +18,12 @@
     "http-status-codes": "^2.1.4",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5",
-    "yargs": "^16.1.0",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@types/express": "^4.17.8",
     "@types/node": "^14.14.6",
     "@types/validator": "^13.1.0",
-    "@types/yargs": "^15.0.9",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "eslint": "^7.12.1",

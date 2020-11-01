@@ -1,4 +1,3 @@
-import yargs from 'yargs';
 import { sequelize } from '../config';
 import {
   filterHistoryCities,
@@ -10,11 +9,14 @@ import WeatherFeatcherParams from '../types/utility/WeatherFeatcherParams';
 import Weather, { WeatherCreationAttributes } from '../models/Weather';
 import { deleteAllCitiesWithWeather } from '../services/CityService';
 
-const argv = <WeatherFeatcherParams>yargs(process.argv).argv;
+const params: WeatherFeatcherParams = {
+  country: process.env.country || 'US',
+  cities: (process.env.cities && parseInt(process.env.cities)) || 2,
+};
 
 (async () => {
   const historyCities = await retrieveHistoryCities();
-  const filteredHistoryCities = filterHistoryCities(historyCities, argv);
+  const filteredHistoryCities = filterHistoryCities(historyCities, params);
 
   await sequelize.sync();
 
