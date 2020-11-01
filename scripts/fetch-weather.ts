@@ -1,13 +1,13 @@
-import { sequelize } from '../config';
+import { sequelize } from '../src/config';
 import {
   filterHistoryCities,
   retrieveHistoryCities,
   retrieveWeatherForCity,
   saveHistoryCities,
-} from '../services/OpenWeatherMapService';
-import WeatherFeatcherParams from '../types/utility/WeatherFeatcherParams';
-import Weather, { WeatherCreationAttributes } from '../models/Weather';
-import { deleteAllCitiesWithWeather } from '../services/CityService';
+} from '../src/services/OpenWeatherMapService';
+import WeatherFeatcherParams from '../src/types/utility/WeatherFeatcherParams';
+import Weather, { WeatherCreationAttributes } from '../src/models/Weather';
+import { deleteAllCitiesWithWeather } from '../src/services/CityService';
 
 const params: WeatherFeatcherParams = {
   country: process.env.country || 'US',
@@ -17,8 +17,6 @@ const params: WeatherFeatcherParams = {
 (async () => {
   const historyCities = await retrieveHistoryCities();
   const filteredHistoryCities = filterHistoryCities(historyCities, params);
-
-  await sequelize.sync();
 
   await deleteAllCitiesWithWeather();
 
