@@ -1,4 +1,3 @@
-import { sequelize } from '../src/config';
 import {
   filterHistoryCities,
   retrieveHistoryCities,
