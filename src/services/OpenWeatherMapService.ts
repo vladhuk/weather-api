@@ -6,6 +6,7 @@ import WeatherFeatcherParams from '../types/utility/WeatherFeatcherParams';
 import HistoryWeatherDto from '../types/dto/open-weather-api/HistoryWeatherDto';
 import OneCallApiWeatherDto from '../types/dto/open-weather-api/OneCallApiWeatherDto';
 import ForecastWeatherDto from '../types/dto/open-weather-api/ForecastWeatherDto';
+import { range } from 'lodash';
 
 export async function retrieveHistoryCities(): Promise<HistoryCityDto[]> {
   const response = await axios.get(
@@ -74,7 +75,7 @@ async function retrieveHistoryWeatherForCity(
   city: City
 ): Promise<HistoryWeatherDto[]> {
   // Free api subscription allows only 5 days of weather history
-  const prevDays = [...Array(5).keys()].map((day) => -day - 1);
+  const prevDays = range(-5, 0);
 
   const weathersPerDayResponsePromises = prevDays.map((day) =>
     axios
