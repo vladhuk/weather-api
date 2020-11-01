@@ -1,0 +1,12 @@
+require('dotenv').config();
+const path = require('path');
+
+const splittedUrl = process.env.datasource_url.split('//');
+const dbConnectionString = `${splittedUrl[0]}//${process.env.datasource_username}:${process.env.datasource_password}@${splittedUrl[1]}`;
+
+module.exports = {
+  'url': dbConnectionString,
+  'models-path': path.resolve('src/models'),
+  'seeders-path': path.resolve('migration/seeders'),
+  'migrations-path': path.resolve('migration/migrations'),
+};
