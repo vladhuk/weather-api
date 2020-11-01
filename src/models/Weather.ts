@@ -2,7 +2,7 @@ import { Model, Optional, DataTypes } from 'sequelize';
 import { sequelize } from '../config';
 import City from './City';
 
-interface WeatherAttributes {
+export interface WeatherAttributes {
   id: number;
   date: Date;
   temp: number;

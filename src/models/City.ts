@@ -7,9 +7,10 @@ interface CityAttributes {
   country: string;
   lon: number;
   lat: number;
+  requestsNumber: number;
 }
 
-type CityCreationAttributes = Optional<CityAttributes, 'id'>;
+type CityCreationAttributes = Optional<CityAttributes, 'id' | 'requestsNumber'>;
 
 class City
   extends Model<CityAttributes, CityCreationAttributes>
@@ -19,6 +20,7 @@ class City
   country!: string;
   lon!: number;
   lat!: number;
+  requestsNumber!: number;
 }
 
 City.init(
@@ -32,6 +34,10 @@ City.init(
     country: DataTypes.STRING,
     lon: DataTypes.FLOAT,
     lat: DataTypes.FLOAT,
+    requestsNumber: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
   },
   {
     sequelize,
