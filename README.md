@@ -12,7 +12,9 @@ See postman collection: https://www.getpostman.com/collections/10ef140329c0beac8
 
 ### `yarn fetch-weather`
 
-Retrieves data from [openweathermap.org](https://openweathermap.org). Truncates related tables before fetching;
+Retrieves data from [openweathermap.org](https://openweathermap.org). Truncates related tables before fetching.
+
+Since free openweathermap.org API allows only 5 days of weather history, 7 days forecast and today weather, this weather API can fetch 13 weather records for every city.
 
 Check `.env` parameters "cities" and "country".
 
