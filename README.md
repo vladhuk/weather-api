@@ -1,5 +1,7 @@
 # Weather API
 
+Remove `.template` extension from `.env.template` and set up application properties.
+
 MySQL server required.
 
 ## Scripts
