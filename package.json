@@ -11,7 +11,7 @@
     "fetch-weather": "yarn migrate && ts-node scripts/fetch-weather.ts",
     "add-test-data": "yarn migrate && sequelize-cli db:seed:all",
     "migrate": "sequelize-cli db:migrate",
-    "lint": "eslint src/"
+    "lint": "eslint src/ scripts/"
   },
   "dependencies": {
     "axios": "^0.21.0",
