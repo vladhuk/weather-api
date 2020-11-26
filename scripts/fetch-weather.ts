@@ -5,7 +5,7 @@ import {
   saveHistoryCities,
 } from '../src/services/OpenWeatherMapService';
 import WeatherFeatcherParams from '../src/types/utility/WeatherFeatcherParams';
-import Weather, { WeatherCreationAttributes } from '../src/models/Weather';
+import Weather from '../src/models/Weather';
 import { deleteAllCitiesWithWeather } from '../src/services/CityService';
 import { mapOneCallApiWeatherDtoToWeatherCreationAttributes } from '../src/mappers/weatherMappers';
 import { flatten } from 'lodash';
